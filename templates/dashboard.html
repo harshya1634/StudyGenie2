@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Your notes — StudyGenie{% endblock %}
+
+{% block content %}
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div>
+      <h2 class="fw-bold mb-0">Notes</h2>
+      <div class="text-muted">Hi {{ session.get('user_name','Student') }} — keep it simple and consistent.</div>
+    </div>
+    <div class="d-flex gap-2">
+      <a class="btn btn-outline-secondary" href="{{ url_for('calendar_page') }}">Open calendar</a>
+      <a class="btn btn-primary" href="{{ url_for('note_new') }}">+ Add note</a>
+    </div>
+  </div>
+
+  <div class="card border-0 shadow-sm p-3 mb-3">
+    <form class="row g-2" method="get" action="{{ url_for('dashboard') }}">
+      <div class="col-md-10">
+        <input class="form-control" name="q" value="{{ q }}" placeholder="Search title, content, or tags..." />
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </div>
+    </form>
+  </div>
+
+  {% if notes|length == 0 %}
+    <div class="card border-0 shadow-sm p-4 text-center">
+      <h4 class="fw-bold mb-2">No notes yet</h4>
+      <p class="text-muted mb-3">Create your first note and export it to PDF when you're ready.</p>
+      <a class="btn btn-primary" href="{{ url_for('note_new') }}">Create a note</a>
+    </div>
+  {% else %}
+    <div class="row g-3">
+      {% for n in notes %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card note-card border-0 shadow-sm h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <h5 class="card-title fw-bold mb-1">{{ n.title }}</h5>
+                <span class="badge text-bg-light">Updated</span>
+              </div>
+              <div class="text-muted small mb-2">
+                {% if n.tags %}{{ n.tags }}{% else %}No tags{% endif %}
+              </div>
+              <p class="card-text text-muted clamp-3">
+                {{ n.content }}
+              </p>
+            </div>
+            <div class="card-footer bg-transparent border-0 p-3 pt-0 d-flex gap-2">
+              <a class="btn btn-sm btn-outline-primary" href="{{ url_for('note_view', note_id=n._id) }}">Open</a>
+              <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('note_edit', note_id=n._id) }}">Edit</a>
+              <a class="btn btn-sm btn-outline-success ms-auto" href="{{ url_for('note_pdf', note_id=n._id) }}">PDF</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}
+

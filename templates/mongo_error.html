@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}MongoDB not running — StudyGenie{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm p-4">
+        <h2 class="fw-bold mb-2">MongoDB is not running</h2>
+        <p class="text-muted mb-3">
+          The app tried to connect to MongoDB but it refused the connection.
+        </p>
+
+        <div class="alert alert-warning">
+          <div class="fw-bold">Current MongoDB URI</div>
+          <div class="mt-1"><code>{{ uri }}</code></div>
+        </div>
+
+        <h5 class="fw-bold mt-3">Fix (Windows)</h5>
+        <ol class="text-muted">
+          <li>Install MongoDB Community Server (or use MongoDB Atlas).</li>
+          <li>Start the MongoDB service (<code>MongoDB Server</code>) in Windows Services.</li>
+          <li>Restart the Flask app (<code>python app.py</code>).</li>
+        </ol>
+
+        <div class="d-flex gap-2 mt-2">
+          <a class="btn btn-primary" href="{{ url_for('index') }}">Retry</a>
+          <a class="btn btn-outline-secondary" href="{{ url_for('signin') }}">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

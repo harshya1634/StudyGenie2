@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Calendar — StudyGenie{% endblock %}
+
+{% block head %}
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div>
+      <h2 class="fw-bold mb-0">Calendar</h2>
+      <div class="text-muted">Click a date to add an event. Click an event to delete it.</div>
+    </div>
+    <a class="btn btn-outline-secondary" href="{{ url_for('dashboard') }}">Back to notes</a>
+  </div>
+
+  <div class="card border-0 shadow-sm p-3">
+    <div id="calendar"></div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+  <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+{% endblock %}
+

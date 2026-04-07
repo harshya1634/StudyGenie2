@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}StudyGenie — Notes Manager{% endblock %}
+
+{% block content %}
+  <div class="row align-items-center g-4">
+    <div class="col-lg-6">
+      <div class="card glass p-4">
+        <h1 class="display-6 fw-bold mb-2">Your notes. Organized.</h1>
+        <p class="text-muted mb-4">
+          StudyGenie helps you save notes, export them to PDF, and plan your week with a built-in calendar.
+        </p>
+        <div class="d-flex gap-2">
+          <a class="btn btn-primary btn-lg" href="{{ url_for('signup') }}">Get started</a>
+          <a class="btn btn-outline-secondary btn-lg" href="{{ url_for('signin') }}">Sign in</a>
+        </div>
+        <hr class="my-4" />
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <div class="feature">
+              <div class="feature-title">Fast notes</div>
+              <div class="feature-desc">Add, edit, search in seconds.</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="feature">
+              <div class="feature-title">PDF export</div>
+              <div class="feature-desc">Download clean PDFs anytime.</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="feature">
+              <div class="feature-title">Calendar</div>
+              <div class="feature-desc">Track deadlines and sessions.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card p-4 shadow-sm border-0">
+        <div class="badge bg-primary-subtle text-primary mb-3">Student dashboard preview</div>
+        <div class="fake-ui">
+          <div class="fake-ui-header"></div>
+          <div class="fake-ui-row"></div>
+          <div class="fake-ui-row"></div>
+          <div class="fake-ui-row"></div>
+          <div class="fake-ui-row"></div>
+        </div>
+        <p class="text-muted mt-3 mb-0">
+          Clean layout, distraction-free writing, and your notes always available.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
